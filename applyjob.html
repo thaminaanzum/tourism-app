@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply for Job</title>
+    <style>
+      /* General Dark Theme */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        background-image: url("https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+        margin: 0;
+        padding: 20px;
+      }
+
+      header {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .logo img {
+        width: 120px;
+        padding-left: 20px;
+        height: 80px;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 5px;
+        margin-bottom: 20px;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-left: 20px;
+      }
+
+      nav ul li a {
+        color: #000000;
+        text-decoration: none;
+        font-size: 20px;
+        padding: 50px 10px;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      nav ul li a.active {
+        background-color: skyblue;
+        color: #000000;
+      }
+
+      /* Form Container Styles */
+      .container {
+        width: 90%;
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: rgba(
+          218,
+          225,
+          234,
+          0.8
+        ); /* Increase transparency by setting alpha to 0.8 */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin-top: 20px; /* Space above the form */
+      }
+
+      h1 {
+        color: #204051; /* Changed to new color */
+        text-align: center;
+      }
+
+      h2 {
+        color: #204051; /* Changed to new color */
+        text-align: center;
+      }
+
+      p {
+        color: #000000; /* Light color for the company */
+        text-align: center;
+      }
+
+      label {
+        margin-top: 10px;
+        display: block;
+        color: #050505; /* Light color for labels */
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #555; /* Dark border */
+        border-radius: 5px;
+        background-color: rgba(192, 199, 205, 0.8); /* Increased transparency */
+        color: #000000; /* Light text color */
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      input[type="file"] {
+        margin: 10px 0;
+        background-color: #2b2b2b; /* Darker input background */
+        color: #f0f0f0; /* Light text color */
+      }
+
+      .submit-btn,
+      .close-btn,
+      .view-resume-btn {
+        background-color: #204051; /* Bright button color changed */
+        color: #ffffff; /* Dark text for button */
+        padding: 8px 16px; /* Reduced size */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .submit-btn:hover {
+        background-color: #204051; /* Darker shade on hover */
+      }
+
+      .close-btn {
+        background-color: #ff6666; /* Close button color */
+      }
+
+      .close-btn:hover {
+        background-color: #ff4d4d; /* Hover color for close button */
+      }
+
+      .view-resume-btn {
+        background-color: #1d4357; /* Blue button color */
+        color: #fff;
+        display: none; /* Hidden by default */
+      }
+
+      .view-resume-btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 600px) {
+        .navbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .navbar h1 {
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="C:\Users\thami\Downloads\f.png" alt="destiny finder" />
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="file:///C:/Users/thami/tourist-app/public/new.html"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="file:///C:/Users/thami/tourist-app/public/aboutus.html"
+              >About Us</a
+            >
+          </li>
+          <li><a href="joblistingpage.html" class="active">Jobs</a></li>
+          <li>
+            <a href="file:///C:/Users/thami/tourist-app/public/Traveler.html"
+              >Traveler</a
+            >
+          </li>
+          <li>
+            <a
+              href="file:///C:/Users/thami/tourist-app/public/new.html#world-map"
+              >Contact Us</a
+            >
+          </li>
+          <li>
+            <a href="file:///C:/Users/thami/tourist-app/public/login.html"
+              >Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Apply for Job</h1>
+      <!-- Display job title and company -->
+      <h2 id="jobTitle"></h2>
+      <p id="company"></p>
+      <form id="applyForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required />
+
+        <label for="coverLetter">Cover Letter:</label>
+        <textarea id="coverLetter" rows="4" required></textarea>
+
+        <label for="resume">Upload Resume:</label>
+        <input type="file" id="resume" accept=".pdf, .doc, .docx" required />
+        <button
+          type="button"
+          class="view-resume-btn"
+          id="viewResumeBtn"
+          onclick="viewResume()"
+        >
+          View Resume
+        </button>
+
+        <button type="submit" class="submit-btn">Submit Application</button>
+        <button type="button" class="close-btn" onclick="goBack()">
+          Back to Job Listings
+        </button>
+      </form>
+    </div>
+
+    <script>
+      // Function to handle form submission
+      document
+        .getElementById("applyForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Collect form data
+          const fullName = document.getElementById("fullName").value;
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const coverLetter = document.getElementById("coverLetter").value;
+          const resume = document.getElementById("resume").files[0];
+
+          // Validate form data (you can add more validation as needed)
+          if (!fullName || !email || !phone || !coverLetter || !resume) {
+            alert("Please fill in all fields and upload your resume.");
+            return;
+          }
+
+          // Display confirmation message (for demonstration purposes)
+          alert(
+            `Application submitted successfully!\n\nName: ${fullName}\nEmail: ${email}\nPhone: ${phone}`
+          );
+
+          // Redirect to job listing page after submission
+          window.location.href = "joblistingpage.html";
+
+          // Reset the form
+          document.getElementById("applyForm").reset();
+          document.getElementById("viewResumeBtn").style.display = "none"; // Hide the view resume button
+        });
+
+      // Function to go back to the previous page
+      function goBack() {
+        window.history.back(); // Go back to the previous page
+      }
+
+      // Function to view the uploaded resume
+      function viewResume() {
+        const resumeFile = document.getElementById("resume").files[0];
+        if (resumeFile) {
+          const url = URL.createObjectURL(resumeFile);
+          window.open(url); // Open the resume in a new tab
+        } else {
+          alert("Please upload a resume first.");
+        }
+      }
+
+      // Show the view resume button when a file is uploaded
+      document.getElementById("resume").addEventListener("change", function () {
+        const resumeFile = this.files[0];
+        const viewResumeBtn = document.getElementById("viewResumeBtn");
+        if (resumeFile) {
+          viewResumeBtn.style.display = "block"; // Show the button
+        } else {
+          viewResumeBtn.style.display = "none"; // Hide the button
+        }
+      });
+
+      // On page load, retrieve job details
+      document.addEventListener("DOMContentLoaded", function () {
+        const jobTitle = localStorage.getItem("jobTitle");
+        const company = localStorage.getItem("company");
+
+        // Set job details on the application form
+        if (jobTitle && company) {
+          document.getElementById("jobTitle").innerText = jobTitle;
+          document.getElementById("company").innerText = company;
+
+          // Optionally, you can clear the storage after retrieving the details
+          localStorage.removeItem("jobTitle");
+          localStorage.removeItem("company");
+        }
+      });
+    </script>
+  </body>
+</html>
