@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>India Tourism Job Listings</title>
+    <style>
+     /* General Light Theme */
+     body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  background-image: url("https://images.pexels.com/photos/775201/pexels-photo-775201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo img {
+  width: 120px;
+  padding-left: 20px;
+  height: 80px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+nav ul li {
+  display: inline;
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 50px 10px; 
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+nav ul li a.active {
+  background-color: skyblue;
+  color: #000000;
+}
+
+h1 {
+  color: #204051;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold; 
+}
+.job-search {
+  background-color: rgba(240, 240, 240, 0.8); /* Light background with 80% opacity */
+  border: 1px solid #333;
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for title box */
+}
+
+
+      .job-search h1 {
+        color: #204051; /* Darker blue for title */
+        font-size: 36px;
+      }
+
+      .filter-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  background-color: rgba(218, 223, 226, 0.8); /* Light background with 80% opacity */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for filter box */
+}
+
+
+      .filter-options label {
+        font-size: 16px;
+        color: #000;
+      }
+
+      .filter-options select {
+        
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        transition: border-color 0.3s ease;
+      }
+
+      .filter-options select:hover {
+        border-color: #204051; /* Blue border on hover */
+      }
+
+      /* Job listings */
+      .job-listings {
+        margin: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .job-card {
+  background-color: rgba(234, 240, 241, 0.8); /* Adjust alpha for transparency */
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+      .job-card:hover {
+        transform: translateY(-10px); /* Floating effect on hover */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+      }
+
+      .job-card h2 {
+        color: #204051; /* Darker blue */
+        font-size: 20px;
+        text-align: center; /* Centered title */
+        margin: 0;
+      }
+
+      .job-card p {
+        margin: 5px 0;
+        color: #333;
+        text-align: left;
+      }
+
+      .apply-btn {
+  background-color: #204051; /* Blue for apply button */
+  color: #fff;
+  width: 130px; /* Fixed width for the button */
+  padding: 6px 0; /* Adjust padding for vertical space */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center; /* Make sure text is centered inside the button */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth button transition */
+  margin: 0 auto; /* Center the button horizontally */
+}
+
+
+
+      .apply-btn:hover {
+        background-color: #213d58; /* Darker blue on hover */
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Modal Styling */
+      .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3); /* Increased transparency */
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.9); /* White with increased transparency */
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Light shadow for modal content */
+}
+
+
+      .modal-content h2 {
+        color: #204051; /* Darker blue */
+      }
+
+      .modal-content input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .login-btn {
+        background-color: #204051; /* Blue for login button */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-btn:hover {
+        background-color: #005bb5; /* Darker blue on hover */
+      }
+
+      .close-btn {
+        background-color: #ff6666; /* Red close button */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1000px) {
+        .job-card {
+          width: 45%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .job-card {
+          width: 100%;
+        }
+
+        .modal-content {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+          <img src="C:\Users\thami\Downloads\f.png" alt="destiny finder">
+      </div>
+      <nav>
+          <ul>
+              
+              <li><a href="file:///C:/Users/thami/tourist-app/public/new.html" >Home</a></li>
+              <li><a href="file:///C:/Users/thami/tourist-app/public/aboutus.html">About Us</a></li>
+              <li><a href="file:///C:/Users/thami/tourist-app/public/explorepage.html" class="active">Jobs</a></li>
+              <li><a href="file:///C:/Users/thami/tourist-app/public/Traveler.html">Traveler</a></li>
+              <li><a href="file:///C:/Users/thami/tourist-app/public/new.html#world-map">Contact Us</a></li>
+              <li><a href="file:///C:/Users/thami/tourist-app/public/login.html">Login</a></li>
+              
+          </ul>
+              
+      </nav>
+      
+  </header>
+
+    <section class="job-search">
+      <h1>Explore Opportunities in Indian Tourism</h1>
+  
+      <div class="filter-options">
+          <label for="location">Location:</label>
+          <select id="location" onchange="filterJobs()">
+              <option value="all">All Locations</option>
+              <option value="delhi">Delhi</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="bengaluru">Bengaluru</option>
+              <option value="chennai">Chennai</option>
+              <option value="kolkata">Kolkata</option>
+          </select>
+  
+          <label for="skills">Skills:</label>
+          <select id="skills" onchange="filterJobs()">
+              <option value="all">All Skills</option>
+              <option value="communication">Communication</option>
+              <option value="customer_service">Customer Service</option>
+              <option value="marketing">Marketing</option>
+              <option value="management">Management</option>
+              <option value="finance">Finance</option>
+          </select>
+  
+          <label for="interests">Interests:</label>
+          <select id="interests" onchange="filterJobs()">
+              <option value="all">All Interests</option>
+              <option value="travel">Travel</option>
+              <option value="culture">Culture</option>
+              <option value="adventure">Adventure</option>
+              <option value="culinary">Culinary</option>
+              <option value="sustainability">Sustainability</option>
+          </select>
+      </div>
+  </section>
+  
+  <div class="job-listings" id="jobListings">
+    <div class="job-card">
+        <h2>Tour Guide</h2>
+        <p><strong>Location:</strong> Delhi</p>
+        <p><strong>Skills:</strong> Communication, Customer Service</p>
+        <p><strong>Interests:</strong> Travel, Culture</p>
+        <button class="apply-btn" onclick="openModal()">Apply</button>
+    </div>
+    <div class="job-card">
+        <h2>Travel Consultant</h2>
+        <p><strong>Location:</strong> Mumbai</p>
+        <p><strong>Skills:</strong> Customer Service, Management</p>
+        <p><strong>Interests:</strong> Travel, Sustainability</p>
+        <button class="apply-btn" onclick="openModal()">Apply</button>
+    </div>
+    <div class="job-card">
+        <h2>Event Manager</h2>
+        <p><strong>Location:</strong> Bengaluru</p>
+        <p><strong>Skills:</strong> Marketing, Management</p>
+        <p><strong>Interests:</strong> Culture, Culinary</p>
+        <button class="apply-btn" onclick="openModal()">Apply</button>
+    </div>
+    <div class="job-card">
+        <h2>Marketing Specialist</h2>
+        <p><strong>Location:</strong> Chennai</p>
+        <p><strong>Skills:</strong> Marketing, Communication</p>
+        <p><strong>Interests:</strong> Adventure, Sustainability</p>
+        <button class="apply-btn" onclick="openModal()">Apply</button>
+    </div>
+    <div class="job-card">
+        <h2>Finance Officer</h2>
+        <p><strong>Location:</strong> Kolkata</p>
+        <p><strong>Skills:</strong> Finance, Management</p>
+        <p><strong>Interests:</strong> Culture, Sustainability</p>
+        <button class="apply-btn" onclick="openModal()">Apply</button>
+    </div>
+</div>
+
+
+    </section>
+
+    <!-- Modal for Login -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2>Login to Apply</h2>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        />
+        <button class="login-btn" onclick="submitLogin()">Login</button>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
+    <script>
+     // Sample job data (you can fetch this from a server)
+const jobs = [
+    {
+        title: "Tour Guide",
+        location: "delhi",
+        skills: ["communication", "customer_service"],
+        interests: ["travel", "culture"],
+        company: "Wanderlust Tours"  // Add company name
+    },
+    {
+        title: "Travel Consultant",
+        location: "mumbai",
+        skills: ["customer_service", "management"],
+        interests: ["travel", "sustainability"],
+        company: "TravelMate"  // Add company name
+    },
+    {
+        title: "Event Manager",
+        location: "bengaluru",
+        skills: ["marketing", "management"],
+        interests: ["culture", "culinary"],
+        company: "EventSphere"  // Add company name
+    },
+    {
+        title: "Marketing Specialist",
+        location: "chennai",
+        skills: ["marketing", "communication"],
+        interests: ["adventure", "sustainability"],
+        company: "PromoWorks"  // Add company name
+    },
+    {
+        title: "Finance Officer",
+        location: "kolkata",
+        skills: ["finance", "management"],
+        interests: ["culture", "sustainability"],
+        company: "FinancePro"  // Add company name
+    },
+];
+
+function filterJobs() {
+    const locationFilter = document.getElementById("location").value;
+    const skillsFilter = document.getElementById("skills").value;
+    const interestsFilter = document.getElementById("interests").value;
+
+    const filteredJobs = jobs.filter(job => {
+        const locationMatch = locationFilter === "all" || job.location === locationFilter;
+        const skillsMatch = skillsFilter === "all" || job.skills.includes(skillsFilter);
+        const interestsMatch = interestsFilter === "all" || job.interests.includes(interestsFilter);
+        return locationMatch && skillsMatch && interestsMatch;
+    });
+
+    displayJobs(filteredJobs);
+}
+
+function displayJobs(jobList) {
+    const jobListingsDiv = document.getElementById("jobListings");
+    jobListingsDiv.innerHTML = ""; // Clear previous listings
+
+    if (jobList.length === 0) {
+        jobListingsDiv.innerHTML = "<p>No jobs found.</p>";
+        return;
+    }
+
+    jobList.forEach(job => {
+        const jobCard = document.createElement("div");
+        jobCard.className = "job-card";
+        jobCard.innerHTML = `
+            <h2>${job.title}</h2>
+            <p><strong>Company:</strong> ${job.company}</p> <!-- Display company name -->
+            <p><strong>Location:</strong> ${job.location.charAt(0).toUpperCase() + job.location.slice(1)}</p>
+            <p><strong>Skills:</strong> ${job.skills.join(", ")}</p>
+            <p><strong>Interests:</strong> ${job.interests.join(", ")}</p>
+            <button class="apply-btn" onclick="openModal()">Apply</button>
+        `;
+        jobListingsDiv.appendChild(jobCard);
+    });
+}
+
+// Call displayJobs when the page loads
+window.onload = function() {
+    displayJobs(jobs);
+};
+      // Open and close modal functions
+      function openModal() {
+        document.getElementById("loginModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("loginModal").style.display = "none";
+      }
+
+      function submitLogin() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (email && password) {
+          alert("Logged in successfully!");
+
+          // Redirect to the apply job page
+          window.location.href = "applyjob.html"; // Redirecting to apply job page
+        } else {
+          alert("Please enter your email and password.");
+        }
+      }
+
+      document
+        .querySelector(".job-listings")
+        .addEventListener("click", function (event) {
+          if (event.target.classList.contains("apply-btn")) {
+            const jobCard = event.target.closest(".job-card");
+            const jobTitle = jobCard.querySelector("h2").innerText;
+            const company = jobCard
+              .querySelector("p:nth-of-type(3)")
+              .innerText.replace("Company: ", "");
+
+            // Store job details in localStorage
+            localStorage.setItem("jobTitle", jobTitle);
+            localStorage.setItem("company", company);
+
+            openModal(); // Open the modal when the apply button is clicked
+          }
+        });
+    </script>
+  </body>
+</html>
