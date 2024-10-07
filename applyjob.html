@@ -243,6 +243,7 @@
         const fullName = document.getElementById("fullName").value;
         const email = document.getElementById("email").value;
         const phone = document.getElementById("phone").value;
+        const password=document.getElementById("password").value;
         const coverLetter = document.getElementById("coverLetter").value;
         const resume = document.getElementById("resume").files[0];
     
@@ -257,6 +258,7 @@
         formData.append("fullName", fullName);
         formData.append("email", email);
         formData.append("phone", phone);
+        formData.append("password",password);
         formData.append("coverLetter", coverLetter);
         formData.append("resume", resume);
     
