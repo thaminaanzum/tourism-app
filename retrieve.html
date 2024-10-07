@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieve Resume</title>
+    <script>
+        function retrieveResume() {
+            const email = document.getElementById("email").value;
+
+            if (!email) {
+                alert("Please enter your email.");
+                return;
+            }
+
+            // Make a GET request to retrieve the resume filename
+            fetch(`http://localhost:5000/get-resume-by-email?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        // Redirect to the download URL for the resume
+                        window.location.href = `http://localhost:5000/resume/${data.filename}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while retrieving the resume.");
+                });
+        }
+    </script>
+</head>
+<body>
+    <h2>Retrieve Your Resume</h2>
+    <form onsubmit="event.preventDefault(); retrieveResume();">
+        <label for="email">Enter your email to retrieve your resume:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <button type="submit">Retrieve Resume</button>
+    </form>
+</body>
+</html>
